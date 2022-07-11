@@ -580,6 +580,14 @@ impl RewriteRules for SplitRules {
                     literal_expr("?right"),
                 ),
             ),
+            rewrite(
+                "split-push-down-binary-plus-literal-inner-replacer",
+                inner_aggregate_split_replacer(
+                    binary_expr("?left", "+", literal_expr("?right")),
+                    "?cube",
+                ),
+                inner_aggregate_split_replacer("?left", "?cube"),
+            ),
             // Cast
             rewrite(
                 "split-push-down-cast-inner-replacer",
